@@ -3,7 +3,6 @@
 // and configures the Apollo GraphQL server.
 
 
-/*
 
 //this is calling all the libraries and APIs we will be using
 const express = require('express');
@@ -12,6 +11,7 @@ const mongoose = require('mongoose');
 
 // Import your MongoDB connection URI from the config file.
 const { MONGODB_URI } = require('./config');
+const app = express();
 
 // Import the GraphQL schema definitions and resolvers.
 const typeDefs = require('./graphql/TypeDefs');
@@ -20,5 +20,12 @@ const resolvers = require('./graphql/resolvers');
 // Initialize the Express and Apollo Server instances.
 // Then start the server with a function
 
-
-*/
+async function startApolloServer() {
+    await server.start();
+    server.applyMiddleware({ app });
+    const PORT = 3000;
+    app.listen(PORT, () => {
+        console.log(`Server listening on ${PORT}${server.graphqlPath}`)
+    });
+}
+startApolloServer();
