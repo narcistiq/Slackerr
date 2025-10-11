@@ -30,14 +30,50 @@ const { gql } = require('apollo-server-express');
 // }
 
 const typeDefs = gql`
-
-    # write your code here!
-
-
     # You can add more types, queries, and mutations here.
     # For example, if you have a 'Post' and 'User' type:
     # type Post { ... }
     # type User { ... }
+    type User {
+        id: ID!
+        email: String!
+        password: String!
+        name: String
+    }
+    type Application {
+        id: ID!
+        company: String
+        position: String
+        applyDate: String
+        responseDate: String
+        response: String
+        url: String
+    }
+    type Query {
+        getAllUsers: [User]
+        getUser( id: ID! ): User
+        getEmail( email: String! ): User
+        getPassword( password: String! ): User
+
+        getAllApplications: [Application]
+        getApplication( id: ID! ): Application
+    }
+    type Mutation {
+        createUser( email: String!, password: String!, name: String ): User
+        updateEmail( email: String! ): User
+        updatePassword( password: String! ): User
+        updateName( name:String ):User
+        deleteUser( id: ID! ): User
+
+        createApplication( company:String, position:String, applyDate:Date, responseDate: Date, response: String, url: String )
+        updateCompany( company:String ): Application
+        updatePosition( position: String ): Application
+        updateApplyDate( applyDate: String ): Application
+        updateResponseDate( responseDate: String ): Application
+        updateReponse( reponse: String ): Application
+        updateUrl( url: String ): Application
+        deleteApplication( id: ID! ): Application
+    }
 `;
 
-module.exports = typeDefs;
+module.exports = { typeDefs };
