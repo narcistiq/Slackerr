@@ -37,3 +37,9 @@ async function startApolloServer() {
     });
 }
 startApolloServer();
+/*
+route:
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+ */
