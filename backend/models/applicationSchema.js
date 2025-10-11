@@ -9,4 +9,4 @@ const applicationSchema = new Schema({
     url: String,
 });
 
-module.exports = model('application', applicationSchema);
+module.exports = model('Application', applicationSchema);
