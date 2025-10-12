@@ -60,6 +60,7 @@ const typeDefs = gql`
         updatePassword( password: String! ): User
         updateName( name:String ):User
         deleteUser( id: ID! ): User
+        deleteUserByEmail ( email: String! ): User
 
         createApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String ): Application
         updateCompany( company:String ): Application

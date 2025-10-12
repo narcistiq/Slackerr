@@ -74,7 +74,15 @@ module.exports = {
             } catch (error) {
                 throw new Error( `Error deleting post with ID: ${id} from database `)
             }
+        },
+        deleteUserByEmail: async (parent, { email }) => {
+            try {
+                return await User.findOneAndDelete(email);
+            } catch (error) {
+                throw new Error( `Error deleting post with ID: ${id} from database `)
+            }
         }
+    
     }
     
 
