@@ -1,0 +1,71 @@
+login {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #FFFFFF 12.98%, rgba(181, 132, 234, 0.8) 53.85%, rgba(117, 25, 255, 0.8) 100%);
+  background-size: cover;
+}
+h1 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 125px;
+  color: var(--bright-purple);
+}
+login .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+login .wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 90px;
+  gap: 1.5rem;
+
+  background: #FDFBFE;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+  box-sizing: border-box;
+}
+login .wrapper .input{
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 10px;
+  
+  width: 20rem;
+  height: 2.5rem;
+
+  background: #F0EDF1;
+  border-radius: 30px;
+  text-indent: 10px;
+}
+login .wrapper .input[type="email"],
+login .wrapper .input[type="password"]{
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
+login .wrapper .input:focus {
+  caret-color: var(--bright-purple);
+  outline: none;
+  border: 3px solid #a16eff;
+}
+login .wrapper .input::placeholder{
+  text-indent: 0;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 31px;
+  color: rgba(0, 0, 0, 0.2);
+}

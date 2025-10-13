@@ -1,0 +1,21 @@
+:root {
+    --dark-purple: #2F054F;
+    --bright-purple: #8419D6;
+    --white-purple: #F0EDF1;
+    --white-pink: #F5F3F5;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Lexend", sans-serif;
+}
+.wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+}
