@@ -11,7 +11,7 @@ const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 
 // Import your MongoDB connection URI from the config file.
-const MONGODB_URI = process.env.MONGO_URI; // from env file
+const MONGODB_URI = process.env.VITE_MONGO_URI; // from env file
 const app = express();
 
 // Import the GraphQL schema definitions and resolvers.
