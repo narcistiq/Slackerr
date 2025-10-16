@@ -4,15 +4,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #FFFFFF 12.98%, rgba(181, 132, 234, 0.8) 53.85%, rgba(117, 25, 255, 0.8) 100%);
-  background-size: cover;
+  background: 
+      url("../assets/white-grid.png"),
+      linear-gradient(180deg, #FFFFFF 12.98%, rgba(181, 132, 234, 0.8) 53.85%, rgba(117, 25, 255, 0.8) 100%);
+  background-size: cover, cover;
 }
-h1 {
+.login h1 {
   margin: 0;
   font-style: normal;
   font-weight: 700;
-  font-size: 100px;
-  line-height: 125px;
+  font-size: 6.25rem;
+  line-height: 7.8125rem;
   color: var(--bright-purple);
 }
 .login .wrapper {
@@ -94,4 +96,7 @@ h1 {
   background: var(--white-pink);
   border: 1.5px solid var(--dark-purple);
   box-sizing: border-box;
+}
+.btn:focus {
+  background: var(--dark-purple);
 }
