@@ -99,6 +99,6 @@
   border: 1.5px solid var(--dark-purple);
   box-sizing: border-box;
 }
-.btn:focus {
+.btn:active {
   background: var(--dark-purple);
 }

@@ -49,7 +49,7 @@ h1 {
     padding: 0.5rem 2rem;
     border: none;
 }
-.wrapper .boxes button:focus {
+.wrapper .boxes button:active {
     background-color: black;
 }
 .wrapper .boxes input:focus {
