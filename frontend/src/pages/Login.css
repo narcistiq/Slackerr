@@ -10,12 +10,13 @@
   background-size: cover, cover;
 }
 .login h1 {
-  margin: 0;
+  position: relative;
   font-style: normal;
   font-weight: 700;
   font-size: 6.25rem;
   line-height: 7.8125rem;
   color: var(--bright-purple);
+ 
 }
 .login .wrapper {
   display: flex;
@@ -23,6 +24,7 @@
   align-items: center;
 }
 .login .wrapper form {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
