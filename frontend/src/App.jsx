@@ -1,6 +1,6 @@
 import "./App.css"
-import Login from "./components/Login"
-import Log from "./components/Log"
+import Login from "./pages/Login"
+import Log from "./pages/Log"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 

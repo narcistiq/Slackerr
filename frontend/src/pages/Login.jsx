@@ -17,7 +17,7 @@ function Login() {
       <div className="wrapper">
         <h1>Slackerr</h1>
         <form>
-            <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
+            <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
             <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
             <div className="btns">
               <button type="submit" className="btn" onClick={() => {setToApp(true);}}>Login</button>

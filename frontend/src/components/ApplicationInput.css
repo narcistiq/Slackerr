@@ -1,11 +1,4 @@
-.log {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-color: var(--white-purple);
-}
-.log h1 {
+h1 {
     position: absolute;
     font-weight: 600;
     font-size: 1.6rem;
@@ -14,7 +7,7 @@
     justify-content: left;
     margin: 1rem;
 }
-.log .wrapper {
+.wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -22,7 +15,7 @@
     align-items: center;
     width: 100%;
 }
-.log .wrapper .boxes {
+.wrapper .boxes {
     position: relative;
     display: flex;
     justify-content: center;
@@ -34,7 +27,7 @@
     max-width: 56rem;
     margin-top: 15vh;
 }
-.log .wrapper .boxes input {
+.wrapper .boxes input {
     box-sizing: border-box;
     border: 2px solid var(--border-gray);
     border-radius: 10px;
@@ -46,36 +39,21 @@
     padding: 0.25rem;
     width: 10vw;
 }
-.log .wrapper .boxes button {
+.wrapper .boxes button {
     font-family: 'Lexend';
     font-size: 1rem;
 
     color: white;
     background: var(--dark-purple);
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 0.5rem 2rem;
     border: none;
 }
-.log .wrapper .boxes input:focus {
+.wrapper .boxes input:focus {
     caret-color: var(--border-gray);
 }
-.log .wrapper .applications-box {
-    display: flex;
-    justify-content: left;
-    align-items: flex-start;
-
-    width: 90vw;
-    height: 70vh;
-    border-radius: 8px;
-    border: 2px solid var(--border-gray);
-    box-sizing: border-box;
-    background-color: white;
-    margin: 10px;
-}
-.log .wrapper .applications-box ul {
-    margin: 0;
-    list-style-type: none;
-}
-.log .wrapper .applications-box li {
-    border: 1px solid black;
+.wrapper .boxes input::placeholder {
+    font-family: 'Lexend';
+    font-size: 0.9rem;
+    opacity: 0.5;
 }
