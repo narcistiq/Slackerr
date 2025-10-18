@@ -1,20 +1,9 @@
-import { gql } from "@apollo/client";
+
 import { useQuery } from "@apollo/client/react"
 import "./ApplicationList.css"
+import { GET_APPLICATIONS } from "./queries";
 
-const GET_APPLICATIONS = gql`
-    query GetAllApplications {
-        getAllApplications {
-            id
-            company
-            position
-            applyDate
-            responseDate
-            response
-            url
-        }
-    }
-`;
+
 function ApplicationList () {
     const { loading, error, data } = useQuery(GET_APPLICATIONS);
     if (loading) return <p>Loading...</p>;
@@ -27,11 +16,7 @@ function ApplicationList () {
             <ul>
             {data.getAllApplications.map(app => (
                 <li key={app.id}>
-                    {app.company} 
-                    {app.position} 
-                    {app.applyDate} 
-                    {app.responseDate} 
-                    {app.response} 
+                    {app.company}: {app.position}|{app.applyDate}|{app.responseDate}|{app.response} 
                 </li>
             ))}
             </ul>

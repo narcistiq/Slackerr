@@ -1,31 +1,21 @@
-import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client/react"
 import { useState } from "react";
+import { GET_APPLICATIONS } from "./queries";
+import { ADD_APPLICATION } from "./mutations";
 import "./ApplicationInput.css"
 
-const ADD_APPLICATION = gql`
-    mutation CreateApplication( $company:String, $position:String, $applyDate:String, $response: String, $url: String ) {
-        createApplication ( company:$company, position:$position, applyDate:$applyDate, responseDate:$responseDate, reponse:$response, url:$url ) {
-            company
-            position
-            applyDate
-            responseDate
-            response
-            url        
-        }
-    }
-`;
 
 function ApplicationInput () {
-    const [addApplication] = useMutation(ADD_APPLICATION);
-    const [formData, setFormData] = useState({
+    const INIT_STATE = {
         company: "",
         position: "",
         applyDate: "",
         responseDate: "",
         response: "",
         url: ""
-    });
+    };
+    const [addApplication] = useMutation(ADD_APPLICATION);
+    const [formData, setFormData] = useState(INIT_STATE);
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -40,11 +30,13 @@ function ApplicationInput () {
                 position: position,
                 applyDate: applyDate,
                 responseDate: responseDate,
-                reponse: response,
+                response: response,
                 url: url
-            }
+            },
+            refetchQueries: [{ query: GET_APPLICATIONS }],
         });
-    }
+        setFormData(INIT_STATE);
+    };
     return (
         <>
         <h1>Slackerr</h1>
@@ -70,7 +62,7 @@ function ApplicationInput () {
                         placeholder="Apply date"/>
                     <input 
                         className="myInput" 
-                        name="respoonseDate"
+                        name="responseDate"
                         value={formData.responseDate}
                         onChange={handleInputChange}
                         placeholder="Response date"/>
