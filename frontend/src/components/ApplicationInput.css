@@ -32,11 +32,11 @@ h1 {
     border: 2px solid var(--border-gray);
     border-radius: 10px;
     outline: none;
+    font-size: 0.9rem;
 
     color: var(--inside-gray);
-    text-indent: 5px;
-    font-size: 1rem;
-    padding: 0.25rem;
+    text-indent: 2px;
+    padding: 0.5rem;
     width: 10vw;
 }
 .wrapper .boxes button {
@@ -48,6 +48,9 @@ h1 {
     border-radius: 10px;
     padding: 0.5rem 2rem;
     border: none;
+}
+.wrapper .boxes button:focus {
+    background-color: black;
 }
 .wrapper .boxes input:focus {
     caret-color: var(--border-gray);

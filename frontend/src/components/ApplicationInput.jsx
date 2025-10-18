@@ -52,31 +52,37 @@ function ApplicationInput () {
                 <div className="boxes">
                     <input 
                         className="myInput" 
+                        name="company"
                         value={formData.company}
                         onChange={handleInputChange}
                         placeholder="Company name"/>
                     <input 
                         className="myInput" 
+                        name="position"
                         value={formData.position}
                         onChange={handleInputChange}
                         placeholder="Position"/>
                     <input 
                         className="myInput" 
+                        name="applyDate"
                         value={formData.applyDate}
                         onChange={handleInputChange}
                         placeholder="Apply date"/>
                     <input 
                         className="myInput" 
+                        name="respoonseDate"
                         value={formData.responseDate}
                         onChange={handleInputChange}
                         placeholder="Response date"/>
                     <input 
                         className="myInput" 
+                        name="reponse"
                         value={formData.response}
                         onChange={handleInputChange}
                         placeholder="Reponse"/>
                     <input 
-                        className="myInput" 
+                        className="myInput"
+                        name="url"
                         value={formData.url}
                         onChange={handleInputChange}
                         placeholder="Url"/>
