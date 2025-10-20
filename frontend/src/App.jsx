@@ -3,7 +3,6 @@ import Login from "./pages/Login"
 import Log from "./pages/Log"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 function App() {
   return(
     <>

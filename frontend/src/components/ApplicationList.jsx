@@ -14,11 +14,12 @@ function ApplicationList () {
         <div className="wrapper">
             <div className="applications-box">
             <ul>
-            {data.getAllApplications.map(app => (
+                {/* Need to somehow make the applications appear in table? - use the html table function forget about the libraries lol */}
+            {data.getAllApplications.map(app => ( 
                 <li key={app.id}>
-                    {app.company}: {app.position}|{app.applyDate}|{app.responseDate}|{app.response} 
+                    {app.company}: {app.position} | {app.applyDate} | {app.responseDate} | {app.response} 
                 </li>
-            ))}
+            ))} 
             </ul>
             </div>
         </div>
