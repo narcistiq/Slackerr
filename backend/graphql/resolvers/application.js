@@ -1,13 +1,5 @@
 const Application = require('../../models/applicationSchema');
 
-const updateField = async ( id, attr, value ) => {
-    try {
-        return await Application.findByIdAndUpdate(id, { [attr]: value }, { new:true });
-    } catch (error) {
-        console.error( `Mongoose update error for Id: ${id}, Field: ${attr}, Value: ${value}` );
-        throw new Error( `Error updating ${attr} of application with ID: ${id}` );
-    }
-}
 module.exports = {
     
     Query: {
@@ -38,12 +30,13 @@ module.exports = {
                 throw new Error( `Error creating new application in the database` );
             }
         },
-        updateCompany: async (parent, { id, company }) => updateField(id, 'company', company),
-        updatePosition: async(parent, { id, position }) => updateField(id, 'position', position),
-        updateApplyDate: async (parent, { id, applyDate }) => updateField(id, 'applyDate', applyDate),
-        updateResponseDate: async(parent, { id, responseDate }) => updateField(id, 'responseDate', responseDate),
-        updateReponse: async(parent, { id, response }) => updateField(id, 'response', response),
-        updateUrl: async(parent, { id, url }) => updateField(id, 'url', url),
+        updateApplication: async (parent, { id, input }) => {
+            try {
+                return await Application.findByIdAndUpdate(id, {$set: input}, {new: true});
+            } catch (error) {
+                throw new Error( 'Application not found' );
+            }
+        },
         deleteApplication: async(parent, { id }) => {
             try {
                 return await Application.findByIdAndDelete(id);

@@ -30,6 +30,14 @@ const { gql } = require('apollo-server-express');
 // }
 
 const typeDefs = gql`
+    input UpdateApplicationInput {
+        company: String
+        position: String
+        applyDate: String
+        responseDate: String
+        response: String
+        url: String
+    }
     type User {
         id: ID!
         email: String!
@@ -63,12 +71,7 @@ const typeDefs = gql`
         deleteUserByEmail ( email: String! ): User
 
         createApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String ): Application
-        updateCompany( company:String ): Application
-        updatePosition( position: String ): Application
-        updateApplyDate( applyDate: String ): Application
-        updateResponseDate( responseDate: String ): Application
-        updateReponse( reponse: String ): Application
-        updateUrl( url: String ): Application
+        updateApplication( id: ID!, input: UpdateApplicationInput! ): Application
         deleteApplication( id: ID! ): Application
     }
 `;

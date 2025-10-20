@@ -12,3 +12,16 @@ export const ADD_APPLICATION = gql`
         }
     }
 `;
+export const UPDATE_APPLICATION = gql`
+    mutation UpdateApplication( $id: ID!, $input: UpdateApplicationInput! ) {
+        updateApplication( id: $id, input: $input ) {
+            id
+            company
+            position
+            applyDate
+            responseDate
+            response
+            url
+        }
+    }
+`;

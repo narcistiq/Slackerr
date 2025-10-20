@@ -1,7 +1,12 @@
-import { getCoreRowModel, useReactTable, flexRender } from "@tanstack/react-table";
+import { 
+    getCoreRowModel, 
+    useReactTable, 
+    flexRender } from "@tanstack/react-table";
 import { GET_APPLICATIONS } from "./queries";
+import { UPDATE_APPLICATION } from "./mutations";
 import { Box } from "@chakra-ui/react";
-import { useQuery } from "@apollo/client/react";
+import { useQuery, useMutation } from "@apollo/client/react";
+import EditableCell from "./EditableCell";
 import "./ApplicationTable.css";
 
 
@@ -9,7 +14,7 @@ const columns = [
     {
         accessorKey: 'company',
         header: 'Company',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     },
     {
         accessorKey: 'position',
@@ -41,16 +46,38 @@ const columns = [
 
 const ApplicationTable = () => {
     const { data, loading, error } = useQuery(GET_APPLICATIONS);
+    const [updateApplication] = useMutation(UPDATE_APPLICATION, {
+        refetchQueries: [{ query: GET_APPLICATIONS }], // refetch applications after updateing
+    });
 
     const table = useReactTable({
         data: data?.getAllApplications || [],
         columns,
         getCoreRowModel:getCoreRowModel(),
         columnResizeMode:"onChange",
+        meta: {
+            updateData: async (rowIndex, columnId, value) => {
+                const row = data.getAllApplications[rowIndex];
+                console.log(row);
+                try {
+                    await updateApplication({
+                        variables: {
+                            id: row.id,
+                            input: {
+                                [columnId]: value,
+                            },
+                        },
+                        refetchQueries: [{query: GET_APPLICATIONS}]
+                    });
+                } catch (err) {
+                    console.error("Update failed:", err);
+                }
+            }
+        }
     });
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error loading applications</p>;
-    console.log(table.getHeaderGroups());
+    console.log(data);
     return (
     <Box>
         <Box className="table" w={table.getTotalSize()}>
