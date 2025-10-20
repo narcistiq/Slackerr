@@ -19,27 +19,27 @@ const columns = [
     {
         accessorKey: 'position',
         header: 'Position',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     },
     {
         accessorKey: 'applyDate',
         header: 'Application Date',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     },
     {
         accessorKey: 'reponseDate',
         header: 'Reponse Date',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     },
     {
         accessorKey: 'reponse',
         header: 'Response',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     },
     {
         accessorKey: 'url',
         header: 'Job Url',
-        cell: (props) => <p>{props.getValue()}</p>
+        cell: EditableCell,
     }
 ]
 
