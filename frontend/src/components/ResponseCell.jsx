@@ -1,9 +1,13 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-const REJECTED = { id: 1, name: "Rejected", color: "red.400" };
-const OFFER = { id: 2, name: "Offer!!!", color: "green.300" };
-const INTERVIEW = { id: 3, name: "Interview", color: "yellow.200" }
-const SCREEN = { id: 4, name: "Screening", color: "gray.300" }
+import { useState } from "react";
+
+const NONE = { id: 0, name: "None" };
+const REJECTED = { id: 2, name: "Rejected" };
+const OFFER = { id: 3, name: "Offer!!!" };
+const INTERVIEW = { id: 4, name: "Interview" }
+const SCREEN = { id: 5, name: "Screening" }
 const RESPONSES = [
+    NONE,
     REJECTED,
     OFFER,
     INTERVIEW,
@@ -11,8 +15,15 @@ const RESPONSES = [
 ]
 
 const ResponseCell = ({ getValue, row, column, table }) => {
-    const { name, color } = getValue() || {};
+    const initialResponse = getValue() || "";
+    const [currentReponse, setCurrentReponse] = useState(initialResponse);
     const { updateData } = table.options.meta;
+
+    const handleSelect = (response) => {
+        (response === "None")? setCurrentReponse("") : setCurrentReponse(response);
+        updateData(row.index, column.id, response);
+    };
+
     return (
         <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
             <MenuButton 
@@ -20,15 +31,16 @@ const ResponseCell = ({ getValue, row, column, table }) => {
                 w="100%" 
                 textAlign="left" 
                 p={1.5} 
-                bg={color || "transparent"}
+                bg="transparent"
                 color="gray.900"
+                border="1px solid var(--border-gray)"
             >
-                {name}
+                {currentReponse} {/* Sets the response field */}
             </MenuButton>
             <MenuList>
                 {RESPONSES.map((response) => (
                 <MenuItem 
-                    onClick={ () => updateData( row.index, column.id, response.name ) }
+                    onClick={ () => handleSelect(response.name) }
                     key={response.id}>
 
                         {response.name}

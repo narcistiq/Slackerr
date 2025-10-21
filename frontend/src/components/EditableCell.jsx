@@ -19,10 +19,13 @@ const EditableCell = ({getValue, row, column, table}) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onBlur={onBlur}
-            variant="filled"
             overflow="hidden"
             textOverflow="ellipsis"
             whiteSpace="nowrap"
+            border="1px solid var(--border-gray)"
+            borderRadius="none"
+            w="100%"
+            size="sm"
         />
     );
 }
