@@ -7,7 +7,7 @@ import { UPDATE_APPLICATION } from "./mutations";
 import { Box } from "@chakra-ui/react";
 import { useQuery, useMutation } from "@apollo/client/react";
 import EditableCell from "./EditableCell";
-import "./ApplicationTable.css";
+import ResponseCell from "./ResponseCell";
 
 
 const columns = [
@@ -27,14 +27,14 @@ const columns = [
         cell: EditableCell,
     },
     {
-        accessorKey: 'reponseDate',
-        header: 'Reponse Date',
+        accessorKey: 'responseDate',
+        header: 'Response Date',
         cell: EditableCell,
     },
     {
-        accessorKey: 'reponse',
+        accessorKey: 'response',
         header: 'Response',
-        cell: EditableCell,
+        cell: ResponseCell,
     },
     {
         accessorKey: 'url',

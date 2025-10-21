@@ -6,6 +6,7 @@ h1 {
     color: var(--dark-purple);
     justify-content: left;
     margin: 1rem;
+    font-family: "Lexend";
 }
 .wrapper {
     position: relative;

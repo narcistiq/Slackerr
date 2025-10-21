@@ -15,6 +15,7 @@ const styles = {
             justifyContent: "center",
             alignItems: "center",
             color: "var(--inside-gray)",
+            borderLeft: "3px solid var(--border-gray)",
             padding: "0.5rem",
             fontWeight: "bold",
             textTransform: "uppercase",

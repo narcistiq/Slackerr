@@ -38,6 +38,7 @@ const typeDefs = gql`
         response: String
         url: String
     }
+    
     type User {
         id: ID!
         email: String!
