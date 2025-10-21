@@ -33,6 +33,7 @@ const ResponseCell = ({ getValue, row, column, table }) => {
                 p={1.5} 
                 bg="transparent"
                 color="gray.900"
+                fontSize="sm"
                 border="1px solid var(--border-gray)"
             >
                 {currentReponse} {/* Sets the response field */}
