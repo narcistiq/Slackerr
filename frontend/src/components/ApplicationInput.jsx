@@ -61,18 +61,6 @@ function ApplicationInput () {
                         onChange={handleInputChange}
                         placeholder="Apply date"/>
                     <input 
-                        className="myInput" 
-                        name="responseDate"
-                        value={formData.responseDate}
-                        onChange={handleInputChange}
-                        placeholder="Response date"/>
-                    <input 
-                        className="myInput" 
-                        name="reponse"
-                        value={formData.response}
-                        onChange={handleInputChange}
-                        placeholder="Reponse"/>
-                    <input 
                         className="myInput"
                         name="url"
                         value={formData.url}
