@@ -7,7 +7,7 @@ function Homepage() {
     <div className="login">
       <div className="wrapper">
         <h1>Slackerr</h1>
-        <Login></Login>
+        <Login/>
       </div>
     </div>
     </>
