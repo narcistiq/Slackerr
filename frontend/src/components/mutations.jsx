@@ -25,3 +25,12 @@ export const UPDATE_APPLICATION = gql`
         }
     }
 `;
+export const ADD_USER = gql`
+    mutation CreateUser( $email: String!, $password: String!, $name: String ) {
+        createUser( email: $email, password: $password, name: $name ) {
+            email
+            password
+            name
+        }
+    }
+`;

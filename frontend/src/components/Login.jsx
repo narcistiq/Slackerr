@@ -9,11 +9,11 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const [getUserByEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL);
+    const [getEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!email) return;
-        getUserByEmail({ variables: {email} })
+        getEmail({ variables: {email} })
     }
     const handleSignUp = (e) => {
         e.preventDefault();
