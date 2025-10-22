@@ -15,6 +15,10 @@ function Login() {
         if (!email) return;
         getUserByEmail({ variables: {email} })
     }
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        navigate("signup");
+    }
     useEffect(() => {   // check when data updates
         if ( called && !loading ){
             if (data?.getEmail) {
@@ -22,14 +26,15 @@ function Login() {
             } else navigate("/signup");
         } 
     }, [data, loading, called, navigate] );
+
     return (
     <>
         <form onSubmit={handleSubmit}>
-            <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-            <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required/>
+            <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
+            <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
             <div className="btns">
               <button type="submit" className="btn">Login</button>
-              <button className="btn signup">Sign Up</button>
+              <button className="btn signup" onClick={handleSignUp}>Sign Up</button>
             </div>
         </form>
     </>
