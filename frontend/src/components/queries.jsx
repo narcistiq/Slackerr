@@ -13,3 +13,20 @@ export const GET_APPLICATIONS = gql`
         }
     }
 `;
+export const GET_USERS =  gql`
+    query GetAllUsers {
+        getAllUsers {
+            id
+            email
+            password
+            name
+        }
+    }
+`;
+export const GET_EMAIL = gql`
+    query GetEmail ( $email: String!) {
+        getEmail ( email: $email) {
+            email
+        }
+    }
+`;
