@@ -7,7 +7,6 @@ function Log() {
         <>
         <div className="log">
             <ApplicationInput />
-            {/* <ApplicationList /> */}
             <ApplicationTable />
         </div>
         </>
