@@ -2,13 +2,13 @@ import {
     getCoreRowModel, 
     useReactTable, 
     flexRender } from "@tanstack/react-table";
-import { GET_APPLICATIONS } from "./queries";
+import { GET_APPLICATIONS, GET_USER_APPLICATIONS } from "./queries";
 import { UPDATE_APPLICATION } from "./mutations";
 import { Box } from "@chakra-ui/react";
 import { useQuery, useMutation } from "@apollo/client/react";
 import EditableCell from "./EditableCell";
 import ResponseCell from "./ResponseCell";
-
+import { useParams } from "react-router";
 
 const columns = [
     {
@@ -45,19 +45,23 @@ const columns = [
 
 
 const ApplicationTable = () => {
-    const { data, loading, error } = useQuery(GET_APPLICATIONS);
-    const [updateApplication] = useMutation(UPDATE_APPLICATION, {
-        refetchQueries: [{ query: GET_APPLICATIONS }], // refetch applications after updateing
+    const { userID } = useParams();
+    // const app = useQuery(GET_APPLICATIONS);
+    const { data, loading, error } = useQuery(GET_USER_APPLICATIONS, {
+        variables: { user: userID },
     });
-
+    console.log(userID, data)
+    const [updateApplication] = useMutation(UPDATE_APPLICATION, {
+        refetchQueries: [{ query: GET_USER_APPLICATIONS }], // refetch applications after updateing
+    });
     const table = useReactTable({
-        data: data?.getAllApplications || [],
+        data: data?.getUserApplications || [],
         columns,
         getCoreRowModel:getCoreRowModel(),
         columnResizeMode:"onChange",
         meta: {
             updateData: async (rowIndex, columnId, value) => {
-                const row = data.getAllApplications[rowIndex];
+                const row = data.getUserApplications[rowIndex];
                 console.log(row);
                 try {
                     await updateApplication({
@@ -67,7 +71,7 @@ const ApplicationTable = () => {
                                 [columnId]: value,
                             },
                         },
-                        refetchQueries: [{query: GET_APPLICATIONS}]
+                        refetchQueries: [{query: GET_USER_APPLICATIONS}]
                     });
                 } catch (err) {
                     console.error("Update failed:", err);

@@ -7,6 +7,11 @@ const applicationSchema = new Schema({
     responseDate: String,
     response: String,
     url: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    }
 });
 
 module.exports = model('Application', applicationSchema);

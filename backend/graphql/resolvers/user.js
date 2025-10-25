@@ -1,6 +1,7 @@
 // the resolvers folder create a file for each of your data types
 // this is the actual code that fetches data from and sends data to our database.
 
+const { AuthenticationError } = require('apollo-server-express');
 const User = require('../../models/userSchema');
 
 module.exports = {
@@ -30,12 +31,16 @@ module.exports = {
         },
         getPassword: async (parent, { password }) => {
             try {
-                return await User.findOne( {'password': passord }) 
+                return await User.findOne( {'password': password }) 
             }
             catch (error) {
                 throw new Error( `Error fetching password ${password} from database` )
             }
-        }
+        },
+        me: async (parent, args, { user }) => {
+            if (!user) throw new AuthenticationError("Not logged in");
+            return user;
+        },
     },
 
     Mutation: {

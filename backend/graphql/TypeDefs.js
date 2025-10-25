@@ -3,32 +3,10 @@
 
 const { gql } = require('apollo-server-express');
 
-// The `gql` tag is used to parse the schema string.
-// This is where you define the structure of your data.
-
-//REMEMBER:
-
-// An object type represents a kind of object you can fetch from your project.
-//  which defines the fields and their data types.
-// type Artist {
-    //     id: ID!
-    //     name: String!
-    //     genre: String
- // }
-
- //The Query type defines all the available queries / data grabbing operations
-    //  query GetHeroName {
-    //   hero {
-    //     name
-    //   }
-    // }
-
- // The Mutation type defines all the available mutations aka the changes the users can make to the data
-
-//  type Mutation {
-//   updateHumanName(id: ID!, name: String!): Human
-// }
-
+/* 
+MongoDB stores only references to the user, but graphql can retrieve the data 
+and return the actual user object
+*/
 const typeDefs = gql`
     input UpdateApplicationInput {
         company: String
@@ -53,13 +31,16 @@ const typeDefs = gql`
         responseDate: String
         response: String
         url: String
+        user: User!
     }
     type Query {
         getAllUsers: [User]
         getUser( id: ID! ): User
         getEmail( email: String! ): User
         getPassword( password: String! ): User
+        me: User
 
+        getUserApplications( user: String! ): [Application]
         getAllApplications: [Application]
         getApplication( id: ID! ): Application
     }
@@ -71,6 +52,7 @@ const typeDefs = gql`
         deleteUser( id: ID! ): User
         deleteUserByEmail ( email: String! ): User
 
+        createUserApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String, user: String! ): Application
         createApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String ): Application
         updateApplication( id: ID!, input: UpdateApplicationInput! ): Application
         deleteApplication( id: ID! ): Application

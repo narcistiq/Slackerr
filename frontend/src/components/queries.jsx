@@ -10,6 +10,9 @@ export const GET_APPLICATIONS = gql`
             responseDate
             response
             url
+            user {
+                id
+            }
         }
     }
 `;
@@ -18,7 +21,6 @@ export const GET_USERS =  gql`
         getAllUsers {
             id
             email
-            password
             name
         }
     }
@@ -26,7 +28,19 @@ export const GET_USERS =  gql`
 export const GET_EMAIL = gql`
     query GetEmail ( $email: String!) {
         getEmail ( email: $email) {
+            id
             email
+            name
+        }
+    }
+`;
+export const GET_USER_APPLICATIONS = gql`
+    query GetUserApplications( $user: String! ) {
+        getUserApplications( user: $user ) {
+            id
+            user {
+                id
+            }
         }
     }
 `;

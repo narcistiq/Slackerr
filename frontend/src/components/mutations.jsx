@@ -34,3 +34,17 @@ export const ADD_USER = gql`
         }
     }
 `;
+// create applications linked to users 
+export const CREATE_USER_APPLICATION = gql`
+    mutation CreateUserApplication( $company: String, $position: String, $applyDate: String, $responseDate: String, $response: String, $url: String, $user: String! ) {
+        createUserApplication( company: $company, position: $position, applyDate: $applyDate, responseDate: $responseDate, response:$response, url:$url, user: $user ) {
+            company
+            position
+            applyDate
+            responseDate
+            response
+            url
+            user
+        }
+    }
+`;

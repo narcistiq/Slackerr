@@ -15,14 +15,17 @@ function Login() {
         if (!email) return;
         getEmail({ variables: {email} })
     }
+    // user presses signup button
     const handleSignUp = (e) => {
         e.preventDefault();
         navigate("signup");
     }
-    useEffect(() => {   // check when data updates
+    // check ONLY when data updates
+    useEffect(() => {   
         if ( called && !loading ){
             if (data?.getEmail) {
-            navigate("/applications");
+                const userId = data.getEmail.id;
+                navigate(`/${userId}/applications`);
             } else navigate("/signup");
         } 
     }, [data, loading, called, navigate] );
