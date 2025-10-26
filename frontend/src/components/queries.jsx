@@ -30,6 +30,7 @@ export const GET_EMAIL = gql`
         getEmail ( email: $email) {
             id
             email
+            password
             name
         }
     }

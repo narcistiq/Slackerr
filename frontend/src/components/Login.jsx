@@ -9,6 +9,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [notUser, setNotUser] = useState('');
+    const [notPassword, setNotPassword] = useState('');
     const navigate = useNavigate();
 
     const [getEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL);
@@ -27,10 +28,19 @@ function Login() {
         if ( called && !loading ){
             if (data?.getEmail) {
                 const userId = data.getEmail.id;
-                navigate(`/${userId}/applications`);
+                const userPassword = data.getEmail.password;
+                if (userPassword != password) {
+                    setNotPassword("Password incorrect!")
+                } else navigate(`/${userId}/applications`);
             } else setNotUser("User doesn't exist! Please create an account using the Sign Up button.");
         } 
     }, [data, loading, called, navigate] );
+
+    // reset error messages when user starts typing
+    useEffect(() => {
+        setNotPassword("")
+        setNotUser("")
+    }, [email, password])
 
     return (
     <>
@@ -41,6 +51,10 @@ function Login() {
                 {notUser}
                 </div> }
             <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+            { notPassword && <div className="error">
+                <IoMdInformationCircleOutline size={15}/>
+                {notPassword}
+                </div> }
             <div className="btns">
               <button type="submit" className="btn">Login</button>
               <button className="btn signup" onClick={handleSignUp}>Sign Up</button>
