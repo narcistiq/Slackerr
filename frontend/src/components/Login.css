@@ -17,15 +17,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.5rem 1rem;
-  gap: 10px;
   
   width: 20rem;
   height: 2.5rem;
 
   background: #F0EDF1;
   border-radius: 30px;
-  text-indent: 10px;
+  text-indent: 20px;
 }
  .input[type="email"],
  .input[type="password"]{
@@ -81,4 +79,16 @@
   color: white;
   background: var(--dark-purple);
   font-weight: 600;
+}
+.error {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 20rem;
+
+  padding: 0;
+  margin: -1.25rem 0 -1.25rem 1rem;
+  font-size: 0.75rem;
+  color: red;
+
 }

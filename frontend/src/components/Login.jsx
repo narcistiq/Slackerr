@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client/react";
 import { GET_EMAIL } from "./queries"
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import "./Login.css"
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [notUser, setNotUser] = useState('');
     const navigate = useNavigate();
 
     const [getEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL);
@@ -26,7 +28,7 @@ function Login() {
             if (data?.getEmail) {
                 const userId = data.getEmail.id;
                 navigate(`/${userId}/applications`);
-            } else navigate("/signup");
+            } else setNotUser("User doesn't exist! Please create an account using the Sign Up button.");
         } 
     }, [data, loading, called, navigate] );
 
@@ -34,6 +36,10 @@ function Login() {
     <>
         <form onSubmit={handleSubmit}>
             <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
+            { notUser && <div className="error">
+                <IoMdInformationCircleOutline size={15}/>
+                {notUser}
+                </div> }
             <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
             <div className="btns">
               <button type="submit" className="btn">Login</button>
