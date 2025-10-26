@@ -1,4 +1,6 @@
 {
+  "name": "slackerr",
+  "type": "module",
   "dependencies": {
     "apollo-server-express": "^3.13.0",
     "dotenv": "^17.2.3",

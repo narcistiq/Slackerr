@@ -1,10 +1,10 @@
 // the resolvers folder create a file for each of your data types
 // this is the actual code that fetches data from and sends data to our database.
 
-const { AuthenticationError } = require('apollo-server-express');
-const User = require('../../models/userSchema');
+import AuthenticationError from 'apollo-server-express';
+import User from '../../models/userSchema.js';
 
-module.exports = {
+const userResolvers = {
     
     
     Query: {
@@ -91,4 +91,5 @@ module.exports = {
     }
     
 
-}
+};
+export default userResolvers;

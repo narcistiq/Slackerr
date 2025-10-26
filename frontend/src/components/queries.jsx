@@ -38,6 +38,12 @@ export const GET_USER_APPLICATIONS = gql`
     query GetUserApplications( $user: String! ) {
         getUserApplications( user: $user ) {
             id
+            company
+            position
+            applyDate
+            responseDate
+            response
+            url
             user {
                 id
             }

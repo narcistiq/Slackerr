@@ -51,7 +51,6 @@ const ApplicationTable = () => {
     const { data, loading, error } = useQuery(GET_USER_APPLICATIONS, {
         variables: userVar,
     });
-    console.log(userID, data)
     const [updateApplication] = useMutation(UPDATE_APPLICATION, {
         refetchQueries: [{ 
             query: GET_USER_APPLICATIONS,
@@ -59,6 +58,7 @@ const ApplicationTable = () => {
         }],
     });
     const gottenData = useMemo(() => data?.getUserApplications || [], [data]);
+    console.log(data)
     const table = useReactTable({
         data: gottenData,
         columns,
@@ -84,7 +84,7 @@ const ApplicationTable = () => {
     });
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error loading applications</p>;
-    console.log(data);
+    console.log(table.getHeaderGroups());
     return (
     <Box>
         <Box className="table" w={table.getTotalSize()}>

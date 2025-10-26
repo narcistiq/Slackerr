@@ -5,11 +5,10 @@
 
 
 // here go each of the different data types:
-const userResolvers = require('./user');
-const applicationResolvers = require('./application');
+import userResolvers from './user.js';
+import applicationResolvers from './application.js';
 
-
-module.exports = {
+const resolvers = {
 
     Query: {
         ...userResolvers.Query,
@@ -20,3 +19,4 @@ module.exports = {
         ...applicationResolvers.Mutation
     }
 };
+export default resolvers;

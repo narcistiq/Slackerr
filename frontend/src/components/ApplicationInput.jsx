@@ -1,7 +1,8 @@
 import { useMutation } from "@apollo/client/react"
 import { useState } from "react";
-import { GET_APPLICATIONS } from "./queries";
-import { ADD_APPLICATION } from "./mutations";
+import { GET_APPLICATIONS, GET_USER_APPLICATIONS } from "./queries";
+import { CREATE_APPLICATION, CREATE_USER_APPLICATION } from "./mutations";
+import { useParams } from "react-router-dom";
 import "./ApplicationInput.css"
 
 
@@ -14,7 +15,8 @@ function ApplicationInput () {
         response: "",
         url: ""
     };
-    const [addApplication] = useMutation(ADD_APPLICATION);
+    const { userID } = useParams();
+    const [addApplication] = useMutation(CREATE_USER_APPLICATION);
     const [formData, setFormData] = useState(INIT_STATE);
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -23,18 +25,20 @@ function ApplicationInput () {
             [name]: value,
         }));
     }
-    const handleSubmit = ( company, position, applyDate, responseDate, response, url ) => {
-        addApplication({
+    const handleSubmit = async () => {
+        await addApplication({
             variables: {
-                company: company,
-                position: position,
-                applyDate: applyDate,
-                responseDate: responseDate,
-                response: response,
-                url: url
+                input: formData,
+                user: userID,
             },
-            refetchQueries: [{ query: GET_APPLICATIONS }],
+            refetchQueries: [
+                { 
+                    query: GET_USER_APPLICATIONS,
+                    variables: { user: userID },
+                }
+            ],
         });
+        console.log(formData)
         setFormData(INIT_STATE);
     };
     return (
@@ -66,14 +70,7 @@ function ApplicationInput () {
                         value={formData.url}
                         onChange={handleInputChange}
                         placeholder="Url"/>
-                    <button className="add" onClick={() => handleSubmit ( 
-                        formData.company,
-                        formData.position,
-                        formData.applyDate,
-                        formData.responseDate,
-                        formData.response,
-                        formData.url
-                    )}>
+                    <button className="add" onClick={() => handleSubmit ()}>
                         +Add
                     </button>
                 </div>

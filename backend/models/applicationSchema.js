@@ -1,4 +1,4 @@
-const { model, Schema } = require('mongoose');
+import { model, Schema } from 'mongoose';
 
 const applicationSchema = new Schema({
     company: String,
@@ -14,4 +14,5 @@ const applicationSchema = new Schema({
     }
 });
 
-module.exports = model('Application', applicationSchema);
+const Application = model('Application', applicationSchema);
+export default Application;

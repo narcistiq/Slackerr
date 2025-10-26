@@ -1,14 +1,13 @@
 // graphql/TypeDefs.js
 // specifies the types, queries, and mutations
 
-const { gql } = require('apollo-server-express');
-
-/* 
+import { gql } from 'apollo-server-express';
+/*
 MongoDB stores only references to the user, but graphql can retrieve the data 
 and return the actual user object
 */
 const typeDefs = gql`
-    input UpdateApplicationInput {
+    input ApplicationInput {
         company: String
         position: String
         applyDate: String
@@ -16,7 +15,6 @@ const typeDefs = gql`
         response: String
         url: String
     }
-    
     type User {
         id: ID!
         email: String!
@@ -54,9 +52,9 @@ const typeDefs = gql`
 
         createUserApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String, user: String! ): Application
         createApplication( company:String, position:String, applyDate:String, responseDate: String, response: String, url: String ): Application
-        updateApplication( id: ID!, input: UpdateApplicationInput! ): Application
+        updateApplication( id: ID!, input: ApplicationInput!, user: String ): Application
         deleteApplication( id: ID! ): Application
     }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

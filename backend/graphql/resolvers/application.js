@@ -1,6 +1,8 @@
 import Application from '../../models/applicationSchema.js';
+import User from "../../models/userSchema.js"
 import mongoose from "mongoose";
 
+console.log("hit")
 const applicationResolvers = {
     
     Query: {
@@ -21,8 +23,9 @@ const applicationResolvers = {
         getUserApplications: async (parent, { user }) => {
             if (!user) throw new AuthenticationError("Not logged in")
             try {
-                const userID = new mongoose.Types.ObjectId.createFromHexString(user)
-                return await Application.find({ user: userID }).populate('user'); // find user and populate the original variable with User objects instead of String
+                const foundUser = await User.findById(user);
+                if (!foundUser) throw new Error( `User not found: ${user}`)
+                return await Application.find({ user: foundUser.id }).populate('user'); // find user and populate the original variable with User objects instead of String
             } catch (error) {
                 console.error( `Error fetching user application: ${error}` );
                 throw new Error( "Invalid user ID" );
@@ -32,15 +35,19 @@ const applicationResolvers = {
     },
 
     Mutation: {
-        createUserApplication: async (parent, { 
-            company, position, applyDate, responseDate, response, url, user
-        }) => {
+        createUserApplication: async (parent, { input, user }) => {
             if (!user) throw new AuthenticationError("Not logged in")
             try {
-                const application = new Application({ company, position, applyDate, responseDate, response, url, user });
-                return await application.save();
+                const foundUser = await User.findById(user);
+                if (!foundUser) throw new Error ( `User not found: ${user}` );
+
+                const application = new Application({ ...input, user: foundUser.id });
+                const savedApp = await application.save();
+                savedApp.user = foundUser;
+                return savedApp;
+         
             } catch (error) {
-                throw new Error( `Error creating new application in the database for user ${user}, Error: ${error}` );
+                throw new Error( `Error creating new application in the database for user ${user}, Error: ${error.message}` );
             }
         },
         createApplication: async (parent, {
@@ -53,9 +60,9 @@ const applicationResolvers = {
                 throw new Error( `Error creating new application in the database` );
             }
         },
-        updateApplication: async (parent, { id, input }) => {
+        updateApplication: async (parent, { id, input, user }) => {
             try {
-                return await Application.findByIdAndUpdate(id, {$set: input}, {new: true});
+                return await Application.findByIdAndUpdate(id, { ...input, user }, {new: true}).populate('user');
             } catch (error) {
                 throw new Error( 'Application not found' );
             }

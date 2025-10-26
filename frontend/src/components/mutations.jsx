@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const ADD_APPLICATION = gql`
+export const CREATE_APPLICATION = gql`
     mutation CreateApplication( $company: String, $position: String, $applyDate: String, $responseDate: String, $response: String, $url: String ) {
         createApplication ( company: $company, position: $position, applyDate: $applyDate, responseDate: $responseDate, response:$response, url:$url ) {
             company
@@ -13,7 +13,7 @@ export const ADD_APPLICATION = gql`
     }
 `;
 export const UPDATE_APPLICATION = gql`
-    mutation UpdateApplication( $id: ID!, $input: UpdateApplicationInput! ) {
+    mutation UpdateApplication( $id: ID!, $input: ApplicationInput! ) {
         updateApplication( id: $id, input: $input ) {
             id
             company
@@ -36,15 +36,17 @@ export const ADD_USER = gql`
 `;
 // create applications linked to users 
 export const CREATE_USER_APPLICATION = gql`
-    mutation CreateUserApplication( $company: String, $position: String, $applyDate: String, $responseDate: String, $response: String, $url: String, $user: String! ) {
-        createUserApplication( company: $company, position: $position, applyDate: $applyDate, responseDate: $responseDate, response:$response, url:$url, user: $user ) {
+    mutation CreateUserApplication( $input: ApplicationInput!, $user: String! ) {
+        createUserApplication( input: $input, user: $user ) {
             company
             position
             applyDate
             responseDate
             response
             url
-            user
+            user {
+                id
+            }
         }
     }
 `;
