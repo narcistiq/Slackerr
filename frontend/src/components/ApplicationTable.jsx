@@ -9,6 +9,7 @@ import { useQuery, useMutation } from "@apollo/client/react";
 import EditableCell from "./EditableCell";
 import ResponseCell from "./ResponseCell";
 import { useParams } from "react-router";
+import { useMemo } from "react";
 
 const columns = [
     {
@@ -46,16 +47,20 @@ const columns = [
 
 const ApplicationTable = () => {
     const { userID } = useParams();
-    // const app = useQuery(GET_APPLICATIONS);
+    const userVar = useMemo(() => ({ user: userID }), [userID]); // stablize the variable to prevent infinite refetching
     const { data, loading, error } = useQuery(GET_USER_APPLICATIONS, {
-        variables: { user: userID },
+        variables: userVar,
     });
     console.log(userID, data)
     const [updateApplication] = useMutation(UPDATE_APPLICATION, {
-        refetchQueries: [{ query: GET_USER_APPLICATIONS }], // refetch applications after updateing
+        refetchQueries: [{ 
+            query: GET_USER_APPLICATIONS,
+            variables: userVar,
+        }],
     });
+    const gottenData = useMemo(() => data?.getUserApplications || [], [data]);
     const table = useReactTable({
-        data: data?.getUserApplications || [],
+        data: gottenData,
         columns,
         getCoreRowModel:getCoreRowModel(),
         columnResizeMode:"onChange",
@@ -67,11 +72,9 @@ const ApplicationTable = () => {
                     await updateApplication({
                         variables: {
                             id: row.id,
-                            input: {
-                                [columnId]: value,
-                            },
+                            input: { [columnId]: value },
+                            user: userID,
                         },
-                        refetchQueries: [{query: GET_USER_APPLICATIONS}]
                     });
                 } catch (err) {
                     console.error("Update failed:", err);
