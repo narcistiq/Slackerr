@@ -4,6 +4,7 @@ import { useLazyQuery } from "@apollo/client/react";
 import { GET_EMAIL } from "./queries"
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import "./Login.css"
+import "./SignUp.css"
 
 function Login() {
     const [email, setEmail] = useState('');

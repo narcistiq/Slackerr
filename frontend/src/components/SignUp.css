@@ -1,14 +1,9 @@
-.signup {
-     padding: 0.5rem calc(3rem/16);
-  min-width: 6rem;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 20px;
-  box-sizing: border-box;
-  outline: none;
-  line-height: 1.5;
+.to-login {
+  font-size: .75rem;
+  text-decoration: underline;
 
-  color: white;
-  background: var(--bright-purple);
-  border: 1.5px solid transparent;
+  margin-top: -1rem;
+}
+.to-login:hover {
+  color: rgb(71, 188, 227);
 }
