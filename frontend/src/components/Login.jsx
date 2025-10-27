@@ -13,7 +13,9 @@ function Login() {
     const [notPassword, setNotPassword] = useState('');
     const navigate = useNavigate();
 
-    const [getEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL);
+    const [getEmail, { data, loading, called }] = useLazyQuery(GET_EMAIL, {
+        fetchPolicy: "network-only",
+    });
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!email) return;
